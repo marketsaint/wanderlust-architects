@@ -1,0 +1,93 @@
+﻿[
+  {
+    "slug": "plush-banquet-venue-ranthambore",
+    "title": "Plush Banquet Venue, Ranthambore",
+    "category": "Architecture",
+    "type": "Hospitality",
+    "concept": "Ceremonial Arrival",
+    "location": "Ranthambore, Rajasthan",
+    "year": "2025",
+    "excerpt": "A hospitality venue shaped around dramatic procession, climate-responsive courts, and premium guest flow.",
+    "description": [
+      "The spatial sequence begins with a low, immersive entry and opens into a layered banquet court that balances scale with intimacy.",
+      "Material restraint and generous openings allow the architecture to stay timeless while supporting operational flexibility.",
+      "Service circulation, event logistics, and back-of-house planning were integrated from the first concept stage."
+    ],
+    "images": []
+  },
+  {
+    "slug": "auric-residence-jaipur",
+    "title": "Auric Residence, Jaipur",
+    "category": "Interior",
+    "type": "Residential",
+    "concept": "Calm Contrast",
+    "location": "Jaipur, Rajasthan",
+    "year": "2024",
+    "excerpt": "A luxury residence interior focused on proportion, natural textures, and clear functional zoning.",
+    "description": [
+      "The interior planning uses long visual axes and soft transitions to create a composed living experience.",
+      "Joinery, lighting, and material detailing are coordinated for consistency from concept through execution."
+    ],
+    "images": []
+  },
+  {
+    "slug": "horizon-corporate-campus-gurgaon",
+    "title": "Horizon Corporate Campus, Gurgaon",
+    "category": "Architecture",
+    "type": "Commercial",
+    "concept": "Efficient Spine",
+    "location": "Gurgaon, Haryana",
+    "year": "2026",
+    "excerpt": "A performance-focused office campus with premium facade rhythm and delivery-ready documentation.",
+    "description": [
+      "The design strategy organizes departments along an atrium spine to improve collaboration and daylight penetration.",
+      "Envelope and core systems were tuned for high occupancy performance and long-term adaptability."
+    ],
+    "images": []
+  },
+  {
+    "slug": "dune-villa-landscape-surat",
+    "title": "Dune Villa Landscape, Surat",
+    "category": "Landscape",
+    "type": "Residential",
+    "concept": "Shaded Retreat",
+    "location": "Surat, Gujarat",
+    "year": "2023",
+    "excerpt": "A low-maintenance landscape composition with cooling shade strategy and curated experience zones.",
+    "description": [
+      "Planting structure and hardscape geometry were developed together to reduce heat gain and improve year-round comfort.",
+      "The outdoor program includes social courts, reflective pockets, and private retreat zones."
+    ],
+    "images": []
+  },
+  {
+    "slug": "atlas-documentation-suite-udaipur",
+    "title": "Atlas Documentation Suite, Udaipur",
+    "category": "Building Documentation",
+    "type": "Hospitality",
+    "concept": "Precision Delivery",
+    "location": "Udaipur, Rajasthan",
+    "year": "2026",
+    "excerpt": "A complete construction documentation package designed to reduce site ambiguity and decision delays.",
+    "description": [
+      "The documentation framework includes coordinated plans, details, schedules, and issue-resolution protocols.",
+      "This approach shortened site clarification loops and increased execution predictability."
+    ],
+    "images": []
+  },
+  {
+    "slug": "metro-headquarters-fitout-mumbai",
+    "title": "Metro Headquarters Fit-Out, Mumbai",
+    "category": "Interior",
+    "type": "Office Fit-Outs",
+    "concept": "Brand-Led Workplace",
+    "location": "Mumbai, Maharashtra",
+    "year": "2025",
+    "excerpt": "A high-performance office fit-out balancing executive identity, collaboration zones, and delivery speed.",
+    "description": [
+      "Workplace planning prioritized team adjacency, acoustic separation, and client-facing brand moments.",
+      "Material and MEP integration were managed in parallel to protect delivery timelines."
+    ],
+    "images": []
+  }
+]
