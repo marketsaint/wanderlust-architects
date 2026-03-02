@@ -29,6 +29,7 @@ export function Header() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.25 });
   const isHomeOverlay = HOME_PATHS.has(pathname);
   const useLightTheme = isHomeOverlay && isOverHero;
+  const useWatchScrolledLayout = isHomeOverlay && !isOverHero;
 
   const isActiveLink = (href) => {
     if (href === '/') {
@@ -82,6 +83,9 @@ export function Header() {
           : 'text-black/70 hover:bg-black hover:text-white'
     );
 
+  const watchDesktopLinkClass =
+    'rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-black/72 transition hover:bg-black hover:text-white';
+
   const mobileLinkClass = (href) =>
     cn(
       'rounded-full px-3 py-2 text-xs uppercase tracking-[0.2em] transition-colors',
@@ -100,17 +104,25 @@ export function Header() {
       <Container className='relative'>
         <div
           className={cn(
-            'flex min-h-[72px] items-center justify-between gap-3 rounded-[22px] px-3 py-3 backdrop-blur-xl sm:px-5',
+            'flex min-h-[72px] items-center justify-between gap-2 rounded-[22px] px-3 py-3 backdrop-blur-xl sm:gap-3 sm:px-5',
             useLightTheme
               ? 'border border-white/24 bg-black/34 shadow-[0_16px_42px_rgba(0,0,0,0.38)]'
               : 'border border-black/15 bg-white/68 shadow-[0_14px_36px_rgba(0,0,0,0.14)]'
           )}
         >
-          <Link href='/' prefetch={false} className='flex shrink-0 items-center pr-3 xl:pr-5' aria-label='Wanderlust Architects home'>
+          <Link
+            href='/'
+            prefetch={false}
+            className='min-w-0 max-w-[calc(100%-88px)] flex flex-1 items-center overflow-hidden pr-2 sm:pr-3 xl:max-w-none xl:flex-none xl:pr-5'
+            aria-label='Wanderlust Architects home'
+          >
             <BrandLogo
-              className='gap-2 sm:gap-3'
-              iconClassName='h-9 w-auto sm:h-10'
-              textClassName={cn('text-[10px] tracking-[0.18em] sm:text-xs', useLightTheme && 'text-white')}
+              className='min-w-0 gap-1.5 sm:gap-2.5'
+              iconClassName='h-7 w-7 sm:h-8 sm:w-8 xl:h-9 xl:w-9'
+              textClassName={cn(
+                'max-[520px]:hidden truncate text-[8px] tracking-[0.08em] min-[420px]:text-[9px] min-[420px]:tracking-[0.11em] sm:text-[10px] sm:tracking-[0.14em]',
+                useLightTheme && 'text-white'
+              )}
               iconSrc={
                 useLightTheme
                   ? '/branding/wanderlust_architects_logo-icon-White.png'
@@ -123,7 +135,7 @@ export function Header() {
           <button
             type='button'
             className={cn(
-              'rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.22em] xl:hidden',
+              'shrink-0 rounded-full px-2.5 py-2 text-[10px] uppercase tracking-[0.2em] xl:hidden',
               useLightTheme
                 ? 'border border-white/35 bg-white/12 text-white'
                 : 'border border-black/20 bg-white/74 text-black/80'
@@ -136,28 +148,57 @@ export function Header() {
             Menu
           </button>
 
-          <nav className='hidden items-center gap-2.5 xl:ml-3 2xl:gap-4 xl:flex' aria-label='Primary'>
-            <div className='shrink-0'>
-              <RegionSwitcher inverted={useLightTheme} />
-            </div>
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} prefetch={false} className={desktopLinkClass(link.href)}>
-                {link.label}
+          {useWatchScrolledLayout ? (
+            <>
+              <nav className='hidden items-center gap-1 md:flex' aria-label='Primary'>
+                {links.map((link) => (
+                  <Link key={link.href} href={link.href} prefetch={false} className={watchDesktopLinkClass}>
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className='hidden shrink-0 items-center gap-2 lg:flex'>
+                <Link
+                  href='/india'
+                  prefetch={false}
+                  className='rounded-full border border-black/15 bg-white/72 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-black/72 transition hover:bg-black hover:text-white'
+                >
+                  India
+                </Link>
+                <Link
+                  href='/dubai'
+                  prefetch={false}
+                  className='rounded-full border border-black/15 bg-white/72 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-black/72 transition hover:bg-black hover:text-white'
+                >
+                  UAE
+                </Link>
+              </div>
+            </>
+          ) : (
+            <nav className='hidden items-center gap-2.5 xl:ml-3 2xl:gap-4 xl:flex' aria-label='Primary'>
+              <div className='shrink-0'>
+                <RegionSwitcher inverted={useLightTheme} />
+              </div>
+              {links.map((link) => (
+                <Link key={link.href} href={link.href} prefetch={false} className={desktopLinkClass(link.href)}>
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                href='/contact'
+                prefetch={false}
+                className={cn(
+                  'shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.16em] transition',
+                  useLightTheme
+                    ? 'border border-white/35 bg-white/12 text-white hover:bg-white hover:text-black'
+                    : 'border border-black/20 bg-white/78 text-black/80 hover:bg-black hover:text-white'
+                )}
+              >
+                Start Project
               </Link>
-            ))}
-            <Link
-              href='/contact'
-              prefetch={false}
-              className={cn(
-                'shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-[10px] uppercase tracking-[0.16em] transition',
-                useLightTheme
-                  ? 'border border-white/35 bg-white/12 text-white hover:bg-white hover:text-black'
-                  : 'border border-black/20 bg-white/78 text-black/80 hover:bg-black hover:text-white'
-              )}
-            >
-              Start Project
-            </Link>
-          </nav>
+            </nav>
+          )}
         </div>
 
         <nav
