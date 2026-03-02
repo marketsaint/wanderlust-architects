@@ -7,6 +7,7 @@ import './GridMotion.css';
 const TOTAL_ITEMS = 28;
 const ROWS = 4;
 const ITEMS_PER_ROW = 7;
+const SPEED_MULTIPLIER = 2;
 
 export default function GridMotion({ items = [], gradientColor = 'rgba(0,0,0,0.66)', className = '', disabled = false }) {
   const containerRef = useRef(null);
@@ -16,6 +17,7 @@ export default function GridMotion({ items = [], gradientColor = 'rgba(0,0,0,0.6
   const rowOffsetsRef = useRef([]);
   const rowDistancesRef = useRef([]);
   const lastTimeRef = useRef(0);
+  const speedRef = useRef(0);
   const isHoveringRef = useRef(false);
   const reducedMotionRef = useRef(false);
 
@@ -69,13 +71,16 @@ export default function GridMotion({ items = [], gradientColor = 'rgba(0,0,0,0.6
     const updateMotion = () => {
       const isReduced = reducedMotionRef.current;
       const isActive = isHoveringRef.current;
-      const basePixelsPerSec = isReduced ? 10 : 52;
-      const hoverPixelsPerSec = isReduced ? 40 : 360;
-      const speed = isActive ? hoverPixelsPerSec : basePixelsPerSec;
+      // Keep movement smooth and predictable: 2x baseline speed plus hover acceleration.
+      const basePixelsPerSec = (isReduced ? 8 : 18) * SPEED_MULTIPLIER;
+      const hoverPixelsPerSec = (isReduced ? 22 : 96) * SPEED_MULTIPLIER;
+      const targetSpeed = isActive ? hoverPixelsPerSec : basePixelsPerSec;
 
       const now = performance.now();
       const dt = lastTimeRef.current ? Math.min(0.05, (now - lastTimeRef.current) / 1000) : 0;
       lastTimeRef.current = now;
+      speedRef.current += (targetSpeed - speedRef.current) * Math.min(1, dt * 9);
+      const speed = speedRef.current;
 
       rowRefs.current.forEach((row, index) => {
         if (!row) return;
@@ -114,6 +119,7 @@ export default function GridMotion({ items = [], gradientColor = 'rgba(0,0,0,0.6
       rowOffsetsRef.current = [];
       rowDistancesRef.current = [];
       lastTimeRef.current = 0;
+      speedRef.current = 0;
       if (mediaQuery.removeEventListener) {
         mediaQuery.removeEventListener('change', handleMotionPreference);
       } else {
@@ -167,6 +173,7 @@ export default function GridMotion({ items = [], gradientColor = 'rgba(0,0,0,0.6
             );
           })}
         </div>
+        <div className='wa-gridmotion__mono-overlay' />
       </section>
     </div>
   );

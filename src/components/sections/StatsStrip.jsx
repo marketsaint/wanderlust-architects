@@ -1,30 +1,36 @@
-"use client";
-
-import { motion } from 'framer-motion';
+import { metrics } from '@/content/global/metrics';
 
 export function StatsStrip() {
   const stats = [
-    { label: 'Project Completed', value: 280 },
-    { label: 'Design Drawing', value: 1450 },
-    { label: 'Design Award', value: 26 },
-    { label: 'Project Running', value: 42 }
+    {
+      label: 'Projects Completed',
+      value: metrics.projectsCompleted,
+      fallback: 'Project counts are validated and published per reporting cycle.'
+    },
+    {
+      label: 'Drawings Delivered',
+      value: metrics.drawingsDelivered,
+      fallback: 'Drawing package volumes are shared after internal QA validation.'
+    },
+    {
+      label: 'Design Awards',
+      value: metrics.awards,
+      fallback: 'Recognition updates are published once formally announced.'
+    },
+    {
+      label: 'Active Projects',
+      value: metrics.activeProjects,
+      fallback: 'Active project load is communicated with current scheduling windows.'
+    }
   ];
 
   return (
     <div className='grid gap-6 border border-mist bg-white p-8 shadow-soft sm:grid-cols-2 lg:grid-cols-4'>
-      {stats.map((stat, i) => (
-        <motion.div
-          key={stat.label}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: i * 0.08 }}
-          whileHover={{ scale: 1.02 }}
-          className='border-b border-mist pb-5 transition-transform duration-300 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-6 last:border-none'
-        >
-          <p className='text-4xl'>{stat.value}+</p>
-          <p className='mt-1 text-xs uppercase tracking-[0.2em] text-iron'>{stat.label}</p>
-        </motion.div>
+      {stats.map((stat) => (
+        <div key={stat.label} className='border-b border-mist pb-5 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-6 last:border-none'>
+          {typeof stat.value === 'number' ? <p className='text-4xl'>{stat.value}+</p> : <p className='text-sm text-iron'>{stat.fallback}</p>}
+          <p className='mt-2 text-xs uppercase tracking-[0.2em] text-iron'>{stat.label}</p>
+        </div>
       ))}
     </div>
   );

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { BlogCard } from '@/components/sections/BlogCard';
 import { Button } from '@/components/ui/Button';
 
-export function BlogListClient({ blogs, basePath = '/journal' }) {
+export function BlogListClient({ blogs, basePath = '/blog' }) {
   const perPage = 6;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(blogs.length / perPage);

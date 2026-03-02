@@ -3,7 +3,7 @@ import { getBlogs, getProjects } from '@/lib/content';
 export default function sitemap() {
   const base = 'https://wanderlustarchitects.com';
 
-  const staticPages = ['', '/india', '/dubai', '/about', '/projects', '/journal', '/career', '/contact'].map((route) => ({
+  const staticPages = ['', '/india', '/dubai', '/experience', '/about', '/projects', '/blog', '/career', '/contact'].map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
@@ -17,12 +17,12 @@ export default function sitemap() {
     priority: 0.75
   }));
 
-  const journalPages = getBlogs().map((blog) => ({
-    url: `${base}/journal/${blog.slug}`,
+  const blogPages = getBlogs().map((blog) => ({
+    url: `${base}/blog/${blog.slug}`,
     lastModified: new Date(blog.date),
     changeFrequency: 'monthly',
     priority: 0.7
   }));
 
-  return [...staticPages, ...projectPages, ...journalPages];
+  return [...staticPages, ...projectPages, ...blogPages];
 }

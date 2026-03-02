@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { extractToc, markdownToBlocks } from '@/lib/markdown';
 import { Button } from '@/components/ui/Button';
 
-export function BlogArticle({ blog, basePath = '/journal' }) {
+export function BlogArticle({ blog, basePath = '/blog' }) {
   const [openToc, setOpenToc] = useState(true);
   const toc = extractToc(blog.content);
   const blocks = markdownToBlocks(blog.content);

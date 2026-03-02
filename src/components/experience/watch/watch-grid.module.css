@@ -1,0 +1,203 @@
+﻿.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+  touch-action: none;
+  user-select: none;
+}
+
+.backgroundTexture {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.35) 0%, transparent 38%),
+    radial-gradient(circle at 80% 78%, rgba(255, 255, 255, 0.28) 0%, transparent 44%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(245, 245, 245, 0.52) 100%);
+}
+
+.vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at center, transparent 28%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.cluster {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.tileButton {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.outerGlow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 72%);
+  filter: blur(8px);
+}
+
+.bloom {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+  filter: blur(36px);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.imageFrame {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  filter: brightness(0.92);
+}
+
+.glassOverlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 100%);
+  mix-blend-mode: overlay;
+}
+
+.innerShadow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.hoverHighlight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.24) 0%, transparent 60%);
+}
+
+.tooltip {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32);
+}
+
+.instructions {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 6;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.selectedProject {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 88px;
+  z-index: 6;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(16px);
+}
+
+@media (max-width: 768px) {
+  .instructions {
+    font-size: 10px;
+    padding: 10px 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .selectedProject {
+    font-size: 12px;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tileButton,
+  .outerGlow,
+  .bloom,
+  .tooltip,
+  .instructions,
+  .selectedProject {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+
+

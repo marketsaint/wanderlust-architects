@@ -21,7 +21,11 @@ function resolveActiveRegion(pathname: string): 'india' | 'dubai' {
   return 'india';
 }
 
-export function RegionSwitcher() {
+type RegionSwitcherProps = {
+  inverted?: boolean;
+};
+
+export function RegionSwitcher({ inverted = false }: RegionSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -33,7 +37,13 @@ export function RegionSwitcher() {
   };
 
   return (
-    <div className='inline-flex items-center gap-1 rounded-full border border-mist bg-white p-1' aria-label='Region switcher' role='group'>
+    <div
+      className={`inline-flex items-center gap-1 rounded-full p-1 ${
+        inverted ? 'border border-white/30 bg-white/10' : 'border border-mist bg-white'
+      }`}
+      aria-label='Region switcher'
+      role='group'
+    >
       {REGION_OPTIONS.map((option) => {
         const isActive = option.key === activeRegion;
         return (
@@ -43,7 +53,13 @@ export function RegionSwitcher() {
             onClick={() => onSelect(option)}
             aria-pressed={isActive}
             className={`rounded-full px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] transition-colors ${
-              isActive ? 'bg-ink text-smoke' : 'text-iron hover:bg-fog'
+              inverted
+                ? isActive
+                  ? 'bg-white text-black'
+                  : 'text-white/80 hover:bg-white/20 hover:text-white'
+                : isActive
+                  ? 'bg-ink text-smoke'
+                  : 'text-iron hover:bg-fog'
             }`}
           >
             {option.label}
@@ -53,4 +69,3 @@ export function RegionSwitcher() {
     </div>
   );
 }
-

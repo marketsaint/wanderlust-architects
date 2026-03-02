@@ -6,12 +6,11 @@ import { Reveal } from '@/components/ui/Reveal';
 
 export const metadata = {
   title: 'Contact',
-  description: 'Contact Wanderlust Architects offices in Jaipur, Gurgaon, and Surat.'
+  description: 'Contact Wanderlust Architects offices in Jaipur and Surat.'
 };
 
 const offices = [
   { city: 'Jaipur', address: 'C-Scheme, Jaipur, Rajasthan', phone: '+91 98765 40001' },
-  { city: 'Gurgaon', address: 'Golf Course Road, Gurgaon, Haryana', phone: '+91 98765 40002' },
   { city: 'Surat', address: 'Athwa, Surat, Gujarat', phone: '+91 98765 40003' }
 ];
 
@@ -28,7 +27,7 @@ export default function ContactPage() {
         </section>
       </Reveal>
 
-      <div className='grid gap-4 md:grid-cols-3'>
+      <div className='grid gap-4 md:grid-cols-2'>
         {offices.map((office, idx) => (
           <Reveal key={office.city} delay={idx * 0.05}>
             <article className='rounded-xl border border-mist bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink'>

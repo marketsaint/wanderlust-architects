@@ -6,11 +6,12 @@ import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { estimateReadTime, formatDate } from '@/lib/format';
+import { applyPointerGlow, resetPointerGlow } from '@/lib/pointerGlow';
 
-export function BlogCard({ blog, basePath = '/journal' }) {
+export function BlogCard({ blog, basePath = '/blog' }) {
   return (
     <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
-      <Card className='h-full overflow-hidden rounded-xl transition-all duration-300 hover:border-ink hover:shadow-soft'>
+      <Card onMouseMove={applyPointerGlow} onMouseLeave={resetPointerGlow} className='architect-card group h-full overflow-hidden rounded-xl transition-all duration-300 hover:border-ink hover:shadow-soft'>
         <div className='relative h-52'>
           <Image src={blog.coverImage} alt={blog.title} fill sizes='(max-width: 768px) 100vw, 50vw' className='object-cover grayscale transition duration-700 group-hover:grayscale-0' />
         </div>

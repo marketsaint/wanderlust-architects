@@ -6,19 +6,27 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'wanderlustarchitects.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'pbs.twimg.com'
       }
     ]
   },
   async redirects() {
     return [
       {
-        source: '/blog',
-        destination: '/journal',
+        source: '/journal',
+        destination: '/blog',
         permanent: true
       },
       {
-        source: '/blog/:slug',
-        destination: '/journal/:slug',
+        source: '/journal/:slug',
+        destination: '/blog/:slug',
         permanent: true
       }
     ];

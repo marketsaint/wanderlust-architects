@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderlust Immersive</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="loader" aria-hidden="true">
+      <div class="loader-grid"></div>
+      <div class="loader-line"></div>
+      <p>Initializing Experience</p>
+    </div>
+
+    <div class="ambient"></div>
+    <div class="spotlight" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <span>Wanderlust</span>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="hero panel">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Architectural Walkthrough</p>
+          <h1>Design in Motion. Space with Intent.</h1>
+          <p class="sub">A highly animated, element-driven website crafted in pure HTML, CSS, and JavaScript.</p>
+          <button class="btn magnetic">Explore Projects</button>
+        </div>
+        <div class="hero-media reveal tilt">
+          <img src="https://wanderlustarchitects.com/wp-content/uploads/2023/05/Enscape_2023-08-24-17-53-19-scaled.jpg" alt="Architecture hero" />
+        </div>
+      </section>
+
+      <section id="gallery" class="panel">
+        <h2 class="reveal">Featured Projects</h2>
+        <div class="cards">
+          <article class="card tilt reveal">
+            <img src="https://wanderlustarchitects.com/wp-content/uploads/2024/11/PENTHOUSE-JAIPUR9.jpg" alt="Project one" />
+            <div><h3>Penthouse Jaipur</h3><p>Interior</p></div>
+          </article>
+          <article class="card tilt reveal">
+            <img src="https://wanderlustarchitects.com/wp-content/uploads/2025/04/THE-BAAGH-BANQUET-E-10042025--scaled.jpg" alt="Project two" />
+            <div><h3>The Baagh Banquet</h3><p>Architecture</p></div>
+          </article>
+          <article class="card tilt reveal">
+            <img src="https://wanderlustarchitects.com/wp-content/uploads/2023/11/ANJUNA-VILLA-GOA9.jpg" alt="Project three" />
+            <div><h3>Anjuna Villa</h3><p>Residential</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="services" class="panel split">
+        <div class="reveal">
+          <h2>Core Services</h2>
+          <ul>
+            <li>Architecture Design</li>
+            <li>Interior Design</li>
+            <li>Office Fit-Outs</li>
+            <li>Project Delivery</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <div class="chip reveal">Concept</div>
+          <div class="chip reveal">Documentation</div>
+          <div class="chip reveal">Execution</div>
+          <div class="chip reveal">Handover</div>
+        </div>
+      </section>
+
+      <section id="contact" class="panel cta">
+        <h2 class="reveal">Let's build something that outlives us.</h2>
+        <a class="btn magnetic reveal" href="https://wa.me/919999999999">Start a Conversation</a>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

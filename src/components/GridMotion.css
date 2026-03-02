@@ -68,6 +68,15 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(160deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.38));
+  pointer-events: none;
+}
+
+.wa-gridmotion__mono-overlay {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .wa-gridmotion__item-content {

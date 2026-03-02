@@ -1,40 +1,47 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
+import { applyPointerGlow, resetPointerGlow } from '@/lib/pointerGlow';
 
 const serviceDetails = [
   {
     title: 'Architecture Design',
-    blurb: 'Signature architecture concepts translated into executable spatial systems.',
-    points: ['Concept + Massing', 'Design Development', 'Facade + Material Strategy']
+    blurb: 'Concept, planning, and facade decisions translated into approval-ready and execution-ready packages.',
+    points: ['Site Response + Massing', 'Design Development Drawings', 'Material + Facade Specifications'],
+    category: 'architecture'
   },
   {
     title: 'Interior Design',
-    blurb: 'High-end interior environments tailored to lifestyle and brand intent.',
-    points: ['Space Planning', 'Joinery Detailing', 'Lighting + Styling']
+    blurb: 'Spatial planning and detailing calibrated for premium living, hospitality, and workplace outcomes.',
+    points: ['Layout + Circulation Planning', 'Joinery + Finish Detailing', 'Lighting + Styling Packages'],
+    category: 'interior'
   },
   {
     title: 'Office Fit-Outs',
-    blurb: 'Performance-led workplace delivery balancing brand experience and productivity.',
-    points: ['Workplace Programming', 'Fast-Track Packages', 'Vendor Coordination']
+    blurb: 'Fast-track workplace delivery with technical coordination and phased execution planning.',
+    points: ['Workplace Programming', 'Fit-Out Construction Sets', 'Vendor + Site Coordination'],
+    category: 'interior'
   },
   {
     title: 'Project Delivery',
-    blurb: 'Single-point oversight from drawings and BOQs to site execution outcomes.',
-    points: ['Site Coordination', 'Milestone Tracking', 'Quality Assurance']
+    blurb: 'Single-point ownership from consultant coordination to milestone closure and quality checks.',
+    points: ['BOQ + Tender Coordination', 'Milestone Tracking', 'Execution QA Reviews'],
+    category: 'architecture'
   },
   {
     title: 'Building Documentation',
-    blurb: 'Coordinated drawing and specification sets that reduce execution ambiguity.',
-    points: ['Construction Drawings', 'Schedules + Specs', 'Issue Revisions']
+    blurb: 'Comprehensive drawing sets built to reduce ambiguity and improve on-site decision speed.',
+    points: ['Construction Drawings', 'Schedules + Specifications', 'Revision + Issue Control'],
+    category: 'building-documentation'
   },
   {
     title: 'Landscape Design',
-    blurb: 'Climate-responsive premium landscape systems with strong experiential flow.',
-    points: ['Planting Strategy', 'Hardscape Detailing', 'Outdoor Programming']
+    blurb: 'Climate-aware landscape systems that align aesthetic experience with long-term maintainability.',
+    points: ['Planting + Zoning Strategy', 'Hardscape Technical Detailing', 'Outdoor Use Programming'],
+    category: 'landscape'
   }
 ];
 
@@ -46,9 +53,10 @@ export function ServicesExperience({ serviceImages }) {
   }, [active]);
 
   const selectedImage = serviceImages[active];
+  const workHref = `/projects?category=${selected.category}`;
 
   return (
-    <section className='grid gap-8 border border-mist bg-white p-8 shadow-soft lg:grid-cols-[1.2fr_0.8fr] lg:p-12'>
+    <section className='architect-shell grid gap-8 rounded-2xl border border-mist p-8 shadow-soft lg:grid-cols-[1.2fr_0.8fr] lg:p-12'>
       <div className='space-y-6'>
         <div className='flex items-center justify-between'>
           <p className='text-xs uppercase tracking-[0.22em] text-iron'>Services</p>
@@ -61,11 +69,13 @@ export function ServicesExperience({ serviceImages }) {
               key={service.title}
               type='button'
               onClick={() => setActive(service.title)}
+              onMouseMove={applyPointerGlow}
+              onMouseLeave={resetPointerGlow}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.04 }}
-              className={`group border p-5 text-left transition-all duration-300 ${
+              className={`architect-card group p-5 text-left transition-all duration-300 ${
                 active === service.title ? 'border-ink bg-ink text-smoke' : 'border-mist hover:border-ink'
               }`}
             >
@@ -74,6 +84,9 @@ export function ServicesExperience({ serviceImages }) {
               <p className={`mt-2 text-sm ${active === service.title ? 'text-silver' : 'text-iron'}`}>{service.blurb}</p>
             </motion.button>
           ))}
+        </div>
+        <div>
+          <Button href={workHref} variant='ghost'>View Our Work</Button>
         </div>
       </div>
 
@@ -84,6 +97,8 @@ export function ServicesExperience({ serviceImages }) {
               key={service.title}
               type='button'
               onClick={() => setActive(service.title)}
+              onMouseMove={applyPointerGlow}
+              onMouseLeave={resetPointerGlow}
               className={`w-56 border px-4 py-3 text-left text-xs uppercase tracking-[0.18em] transition-colors ${
                 service.title === active ? 'border-ink bg-ink text-smoke' : 'border-mist text-iron hover:border-ink hover:text-ink'
               }`}
@@ -101,12 +116,14 @@ export function ServicesExperience({ serviceImages }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35 }}
-              className='relative h-[360px] overflow-hidden border border-mist'
+              onMouseMove={applyPointerGlow}
+              onMouseLeave={resetPointerGlow}
+              className='architect-card relative h-[360px] overflow-hidden'
             >
               <Image src={selectedImage} alt={selected.title} fill sizes='(max-width: 1024px) 100vw, 40vw' className='object-cover grayscale' />
             </motion.div>
           </AnimatePresence>
-          <div className='border border-mist p-5'>
+          <div onMouseMove={applyPointerGlow} onMouseLeave={resetPointerGlow} className='architect-card p-5'>
             <h4 className='text-2xl'>{selected.title}</h4>
             <ul className='mt-3 space-y-2 text-sm text-iron'>
               {selected.points.map((point) => (

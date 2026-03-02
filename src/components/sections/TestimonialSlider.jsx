@@ -10,20 +10,23 @@ export function TestimonialSlider() {
       {
         quote:
           'Wanderlust translated our vision into a timeless built form. Every detail, from planning to finish, felt intentional and premium.',
-        name: 'Ananya K.',
-        role: 'Residential Client'
+        clientType: 'Private Residence Client',
+        city: 'Jaipur',
+        scope: 'Architecture + Interior Delivery'
       },
       {
         quote:
           'Their architectural clarity and documentation rigor made execution seamless. The final outcome exceeded our expectations.',
-        name: 'R. Mehta',
-        role: 'Hospitality Developer'
+        clientType: 'Hospitality Developer',
+        city: 'Ranthambore',
+        scope: 'Architecture + Documentation'
       },
       {
         quote:
           'The team balanced elegance with operational intelligence. A rare design studio that understands both emotion and precision.',
-        name: 'A. Sharma',
-        role: 'Corporate Client'
+        clientType: 'Corporate Workplace Client',
+        city: 'Dubai',
+        scope: 'Office Fit-Out + Project Delivery'
       }
     ],
     []
@@ -45,9 +48,12 @@ export function TestimonialSlider() {
           className='space-y-6'
         >
           <blockquote className='max-w-4xl text-2xl leading-relaxed sm:text-3xl'>&ldquo;{testimonials[index].quote}&rdquo;</blockquote>
-          <figcaption>
-            <p className='text-sm uppercase tracking-[0.2em]'>{testimonials[index].name}</p>
-            <p className='text-sm text-iron'>{testimonials[index].role}</p>
+          <figcaption className='flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-iron'>
+            <span>{testimonials[index].clientType}</span>
+            <span aria-hidden='true'>•</span>
+            <span>{testimonials[index].city}</span>
+            <span aria-hidden='true'>•</span>
+            <span>{testimonials[index].scope}</span>
           </figcaption>
         </motion.figure>
       </AnimatePresence>

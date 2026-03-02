@@ -44,8 +44,6 @@ export function middleware(request: NextRequest) {
   const cookieRegion = request.cookies.get(REGION_COOKIE)?.value?.toLowerCase();
   if (cookieRegion === 'india' || cookieRegion === 'dubai') {
     const redirectTo = regionToPath(cookieRegion);
-    if (pathname === redirectTo) return NextResponse.next();
-
     const url = request.nextUrl.clone();
     url.pathname = redirectTo;
     const response = NextResponse.redirect(url);
@@ -67,8 +65,6 @@ export function middleware(request: NextRequest) {
   }
 
   const redirectTo = regionToPath(detectedRegion);
-  if (pathname === redirectTo) return NextResponse.next();
-
   const url = request.nextUrl.clone();
   url.pathname = redirectTo;
 
@@ -89,4 +85,3 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ['/']
 };
-

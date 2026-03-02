@@ -5,11 +5,14 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { applyPointerGlow, resetPointerGlow } from '@/lib/pointerGlow';
 
 export function ProjectCard({ project, priority = false }) {
+  const outcome = project.outcome || 'Delivered with precision & clarity.';
+
   return (
     <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
-      <Card className='group overflow-hidden transition-all duration-300 hover:border-ink hover:shadow-soft'>
+      <Card onMouseMove={applyPointerGlow} onMouseLeave={resetPointerGlow} className='architect-card group overflow-hidden transition-all duration-300 hover:border-ink hover:shadow-soft'>
         <Link href={`/projects/${project.slug}`} className='block'>
           <div className='relative h-64 overflow-hidden bg-ink/5'>
             <Image
@@ -31,6 +34,7 @@ export function ProjectCard({ project, priority = false }) {
             </div>
             <h3 className='text-xl leading-tight'>{project.title}</h3>
             <p className='text-sm text-iron'>{project.location}</p>
+            <p className='text-xs uppercase tracking-[0.18em] text-iron'>{outcome}</p>
           </div>
         </Link>
       </Card>
