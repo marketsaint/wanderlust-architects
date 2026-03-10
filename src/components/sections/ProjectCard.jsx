@@ -9,6 +9,7 @@ import { applyPointerGlow, resetPointerGlow } from '@/lib/pointerGlow';
 
 export function ProjectCard({ project, priority = false }) {
   const outcome = project.outcome || 'Delivered with precision & clarity.';
+  const hasYear = Number.isFinite(Number(project.year)) && Number(project.year) > 0;
 
   return (
     <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
@@ -27,11 +28,11 @@ export function ProjectCard({ project, priority = false }) {
               <p className='text-xs uppercase tracking-[0.2em]'>{project.location}</p>
             </div>
           </div>
-          <div className='space-y-4 p-6'>
-            <div className='flex items-center justify-between gap-3'>
-              <Badge>{project.category}</Badge>
-              <span className='text-xs uppercase tracking-[0.2em] text-iron'>{project.year}</span>
-            </div>
+            <div className='space-y-4 p-6'>
+              <div className='flex items-center justify-between gap-3'>
+                <Badge>{project.category}</Badge>
+                <span className='text-xs uppercase tracking-[0.2em] text-iron'>{hasYear ? project.year : 'Current Portfolio'}</span>
+              </div>
             <h3 className='text-xl leading-tight'>{project.title}</h3>
             <p className='text-sm text-iron'>{project.location}</p>
             <p className='text-xs uppercase tracking-[0.18em] text-iron'>{outcome}</p>

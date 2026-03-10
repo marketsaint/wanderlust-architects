@@ -12,7 +12,7 @@ export default function sitemap() {
 
   const projectPages = getProjects().map((project) => ({
     url: `${base}/projects/${project.slug}`,
-    lastModified: new Date(`${project.year}-12-31`),
+    lastModified: project.updatedAt ? new Date(project.updatedAt) : new Date(),
     changeFrequency: 'monthly',
     priority: 0.75
   }));

@@ -14,6 +14,12 @@ export function ProjectsExplorer({ projects }) {
   const [sort, setSort] = useState('Newest');
 
   const visibleProjects = useMemo(() => {
+    const resolveSortValue = (project) => {
+      const yearValue = Number(project.year);
+      if (Number.isFinite(yearValue) && yearValue > 0) return yearValue;
+      return Number(project.sortOrder || 0);
+    };
+
     const filtered = projects.filter((project) => {
       const categoryMatch = category === 'All' || project.category === category;
       const q = search.trim().toLowerCase();
@@ -26,8 +32,8 @@ export function ProjectsExplorer({ projects }) {
     });
 
     const sorted = [...filtered].sort((a, b) => {
-      if (sort === 'Oldest') return Number(a.year) - Number(b.year);
-      return Number(b.year) - Number(a.year);
+      if (sort === 'Oldest') return resolveSortValue(a) - resolveSortValue(b);
+      return resolveSortValue(b) - resolveSortValue(a);
     });
 
     return sorted;
